@@ -1,0 +1,21 @@
+---
+- name: WORDPRESS - Create wordpress container
+  community.docker.docker_container:
+    name: wordpress
+    image: wordpress:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9012:80'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/wordpress/html:/var/www/html"
+    env:
+      WORDPRESS_DB_HOST: "{{ host_db }}"
+      WORDPRESS_DB_USER: "root"
+      WORDPRESS_DB_PASSWORD: "{{ default_pass }}"
+      WORDPRESS_DB_NAME: "wordpress"

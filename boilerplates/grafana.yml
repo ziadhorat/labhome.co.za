@@ -1,0 +1,23 @@
+---
+- name: GRAFANA - Create grafana container
+  community.docker.docker_container:
+    name: grafana
+    image: grafana/grafana-oss:latest
+    restart_policy: always
+    state: started
+    pull: true
+    user: '1000:1000'
+    privileged: true
+    ports:
+      - "9004:3000"
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/grafana/data:/var/lib/grafana"
+    env:
+      GF_DATABASE_HOST: "{{ host_db }}"
+      GF_DATABASE_NAME: "grafana"
+      GF_DATABASE_USER: "root"
+      GF_DATABASE_PASSWORD: "{{ default_pass }}"
+      GF_DATABASE_TYPE: "mysql"
+      GF_DATABASE_MAX_OPEN_CONN: "300"

@@ -1,0 +1,22 @@
+---
+- name: TAILSCALE - Create tailscale container
+  community.docker.docker_container:
+    name: tailscale
+    image: tailscale/tailscale:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    network_mode: host
+    capabilities:
+      - "NET_ADMIN"
+      - "NET_RAW"
+    volumes:
+      - /var/lib:/var/lib 
+      - /dev/net/tun:/dev/net/tun 
+      - "{{ docker_dir }}/tailscale/data:/var/lib/tailscale"
+    env:
+      TS_AUTHKEY: "{{ ts_auth_key }}"
+      TS_EXTRA_ARGS: "--advertise-exit-node "
+      TS_ROUTES: "{{ subnet }}"
+      TS_STATE_DIR: /var/lib/tailscale

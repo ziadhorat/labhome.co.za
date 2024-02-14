@@ -1,0 +1,16 @@
+---
+- name: DRAWIO - Create drawio container
+  community.docker.docker_container:
+    name: drawio
+    image: jgraph/drawio:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    # user: 'root:root'
+    published_ports:
+      - 9003:80
+    networks:
+      - name: homelab
+    env:
+      KEY_PASS: "{{ default_pass }}"

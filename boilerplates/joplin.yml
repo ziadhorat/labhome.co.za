@@ -1,0 +1,23 @@
+---
+- name: JOPLIN - Create joplin container
+  community.docker.docker_container:
+    name: joplin
+    image: joplin/server:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    networks:
+      - name: homelab
+    ports:
+      - "9007:22300"
+    env:
+      TZ: "{{ timezone }}"
+      DB_CLIENT: "pg"
+      APP_BASE_URL: "https://joplin.{{ domain_external }}"
+      POSTGRES_PASSWORD: "{{ default_pass }}"
+      POSTGRES_DATABASE: "joplin"
+      POSTGRES_USER: "{{ username }}"
+      POSTGRES_PORT: "5432"
+      POSTGRES_HOST: "{{ host_db }}"
+

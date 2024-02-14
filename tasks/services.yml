@@ -1,0 +1,27 @@
+---
+- name: SERVICES
+  hosts: services
+  become: true
+  vars_files: "../group_vars/general/vars.yml"
+
+  tasks:
+    - name: SERVICES - Deploy services.domain.tld apps
+      when: inventory_hostname == "services.domain.tld"
+      ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
+      loop:
+        - portainer_agent                                             # [9099]
+        - cadvisor                                                    # [9098]
+        - flood                                                       # [9013]
+        - wordpress                                                   # [9012]
+        - homepage                                                    # [9011]
+        - tautulli                                                    # [9010]
+        - drawio                                                      # [9003]
+        - homeassistant                                               # [9008]
+        - joplin                                                      # [9007]
+        - filegator                                                   # [9006]
+        - ghost                                                       # [9005]
+        - ittools                                                     # [9002]
+        - stirling                                                    # [9001]
+        - pairdrop                                                    # [9000]
+        - watchtower                                                  # NULL
+        - promtail                                                    # NULL

@@ -1,0 +1,26 @@
+---
+- name: PIHOLE - Create pihole container
+  community.docker.docker_container:
+    name: pihole
+    image: pihole/pihole:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: 'root:root'
+    published_ports:
+      - "9001:80/tcp"
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+    volumes:
+      - "{{ docker_dir }}/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
+      - "{{ docker_dir }}/pihole/data:/etc/pihole"
+    env:
+      WEBPASSWORD: "{{ default_pass }}"
+      TZ: "{{ timezone }}"
+      DNSMASQ_USER: "root"
+      WEBTHEME: "default-darker"
+      WEBUIBOXEDLAYOUT: "boxed"
+      DHCP_ACTIVE: "false"
+

@@ -1,0 +1,23 @@
+---
+- name: CODESERVER - Create codeserver container
+  community.docker.docker_container:
+    name: codeserver
+    image: lscr.io/linuxserver/code-server:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: 'root:root'
+    ports:
+      - "9005:8443"
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/codeserver/config:/config"
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"
+      PASSWORD: "{{ default_pass }}"
+      SUDO_PASSWORD: "{{ default_pass }}"
+      PROXY_DOMAIN: "codeserver.{{ domain_internal }}"

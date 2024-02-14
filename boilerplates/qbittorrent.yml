@@ -1,0 +1,30 @@
+---
+- name: QBITTORRENT - Create qbittorrent container
+  community.docker.docker_container:
+    name: qbittorrent
+    image: j4ym0/pia-qbittorrent
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '8888:8888'
+      # - '6881:6881'
+      # - '6881:6881/udp'
+    user: 'root:root'
+    capabilities:
+      - NET_ADMIN
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/qbittorrent/config:/config"
+      - "{{ data_dir }}/media/downloads:/downloads"
+    env:
+      REGION: "Sweden"
+      PORT_FORWARDING: "true"
+      DNS_SERVERS: "209.222.18.222,209.222.18.218,103.196.38.38,103.196.38.39"
+      UID: "{{ puid }}"
+      GID: "{{ pgid }}"
+      TZ: "{{ timezone }}"
+      USER: "{{ pia_user }}"
+      PASSWORD: "{{ pia_pass }}"

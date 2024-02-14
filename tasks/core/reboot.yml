@@ -1,0 +1,4 @@
+---
+- name: REBOOT - Reboot the server
+  ansible.builtin.reboot:
+    msg: "Rebooting server to finish setup"

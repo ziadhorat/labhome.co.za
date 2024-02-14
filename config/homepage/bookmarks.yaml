@@ -1,0 +1,22 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+- Personal:
+    - BookmarkName:
+        - icon: http://domain.tld/favicon.ico
+          href: http://domain.tld
+    - BookmarkName:
+        - icon: http://domain.tld/favicon.ico
+          href: http://domain.tld
+    - BookmarkName:
+        - icon: http://domain.tld/favicon.ico
+          href: http://domain.tld
+    - BookmarkName:
+        - icon: http://domain.tld/favicon.ico
+          href: http://domain.tld
+    - BookmarkName:
+        - icon: http://domain.tld/favicon.ico
+          href: http://domain.tld
+    - BookmarkName:
+        - icon: http://domain.tld/favicon.ico
+          href: http://domain.tld

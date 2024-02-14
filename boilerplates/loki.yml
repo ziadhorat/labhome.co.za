@@ -1,0 +1,15 @@
+---
+- name: LOKI - Create loki container
+  community.docker.docker_container:
+    name: loki
+    image: grafana/loki:2.6.1
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    ports:
+      - "3100:3100"
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/loki/data:/loki"

@@ -1,0 +1,20 @@
+---
+- name: PROMETHEUS - Create prometheus container
+  community.docker.docker_container:
+    name: prometheus
+    image: prom/prometheus:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: "root:root"
+    command: "--config.file=/etc/prometheus/prometheus.yaml"
+    networks:
+      - name: homelab
+    ports:
+      - "9006:9090"
+    volumes:
+      - "{{ docker_dir }}/prometheus/config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro"
+      - "{{ docker_dir }}/prometheus/data:/prometheus"
+    env:
+      PASSWORD: "{{ default_pass }}"

@@ -1,0 +1,26 @@
+---
+- name: GHOST - Create ghost container
+  community.docker.docker_container:
+    name: ghost
+    image: ghost:5-alpine
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    networks:
+      - name: homelab
+    security_opts: "seccomp:unconfined"
+    capabilities:
+      - "CAP_SYS_NICE"
+    user: 'root:root'
+    ports:
+        - "9005:2368"
+    volumes:
+      - "{{ docker_dir }}/ghost/data:/var/lib/ghost/content"
+    env:
+      url: "https://{{ domain_external }}"
+      database__client: mysql
+      database__connection__host: "{{ host_db }}"
+      database__connection__user: "root"
+      database__connection__password: "{{ default_pass }}"
+      database__connection__database: "ghost"

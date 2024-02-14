@@ -1,0 +1,21 @@
+---
+- name: MYSQL - Create mysql container
+  community.docker.docker_container:
+    name: mysql
+    image: mysql:8
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '3306:3306'
+    user: 'root:root'
+    command: "--default-authentication-plugin=mysql_native_password"
+    networks:
+      - name: homelab
+    security_opts: "seccomp:unconfined"
+    volumes:
+      - "{{ docker_dir }}/mysql/data:/var/lib/mysql"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ default_pass }}"
+      MYSQL_ROOT_USERNAME: "{{ username }}"

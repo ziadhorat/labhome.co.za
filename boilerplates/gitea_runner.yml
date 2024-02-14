@@ -1,0 +1,23 @@
+---
+- name: GITEARUNNER - Create gitea_runner container
+  community.docker.docker_container:
+    name: gitea_runner
+    image: gitea/act_runner:nightly
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: 'root:root'
+    networks:
+      - name: homelab
+    command: apk add --no-cache nodejs
+    volumes:
+      - "{{ docker_dir }}/gitea_runner/data:/data"
+      - "{{ docker_dir }}/gitea_runner/config.yml:/config.yaml"
+      - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      CONFIG_FILE: /config.yaml
+      GITEA_INSTANCE_URL: "https://gitea.{{ domain_internal }}"
+      GITEA_RUNNER_REGISTRATION_TOKEN: "{{ gitea_runner_regtoken}}"
+      GITEA_RUNNER_NAME: "gitea-01"
+      GITEA_RUNNER_LABELS: "primary"

@@ -1,0 +1,27 @@
+---
+- name: CRAFTY - Create crafty container
+  community.docker.docker_container:
+    name: crafty
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9008:8443' # HTTPS
+      - '25500-25600:25500-25600' # MC SERV PORT RANGE
+      # - "8000:8000" # HTTP
+      # - "8123:8123" # DYNMAP
+      # - "19132:19132/udp" # BEDROCK
+    user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/crafty/backups:/crafty/backups"
+      - "{{ docker_dir }}/crafty/logs:/crafty/logs"
+      - "{{ docker_dir }}/crafty/servers:/crafty/servers"
+      - "{{ docker_dir }}/crafty/config:/crafty/app/config"
+      - "{{ docker_dir }}/crafty/import:/crafty/import"
+    env:
+      TZ: "{{ timezone }}"

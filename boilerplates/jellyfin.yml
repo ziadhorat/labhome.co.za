@@ -1,0 +1,21 @@
+---
+- name: JELLYFIN - Create jellyfin container
+  community.docker.docker_container:
+    name: jellyfin
+    image: lscr.io/linuxserver/jellyfin:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '8096:8096'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/jellyfin/config:/config"
+    env:
+      TEMPLATE: "template"
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"

@@ -1,0 +1,23 @@
+---
+- name: HOMEASSISTANT - Create homeassistant container
+  community.docker.docker_container:
+    name: homeassistant
+    image: lscr.io/linuxserver/homeassistant:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9008:8123'
+    user: 'root:root'
+    network_mode: host
+    volumes:
+      - "{{ docker_dir }}/homeassistant/config:/config"
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"
+      PASSWORD: "{{ default_pass }}"
+
+# https://community.home-assistant.io/t/home-assistant-400-bad-request-docker-proxy-solution/322163
+# https://github.com/wernerhp/ha.integration.load_shedding

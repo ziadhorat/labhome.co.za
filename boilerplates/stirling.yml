@@ -1,0 +1,14 @@
+---
+- name: STIRLINGPDF - Create stirlingpdf container
+  community.docker.docker_container:
+    name: stirlingpdf
+    image: frooodle/s-pdf:latest-ultra-lite
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - 9001:8080
+    networks:
+      - name: homelab
+

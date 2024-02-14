@@ -1,0 +1,24 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/service-widgets
+
+- search:
+    provider: google
+    target: _blank
+
+- openweathermap:
+    label: HOME
+    latitude: -65.123123
+    longitude: 15.543234
+    units: metric
+    provider: openweathermap
+    apikey: ******
+    cache: 5
+
+- datetime:
+    text_size: xl
+    format:
+      dateStyle: short
+      timeStyle: short
+      hour12: true
+      timeZone: 'Africa/Johannesburg'

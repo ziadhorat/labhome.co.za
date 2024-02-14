@@ -1,0 +1,15 @@
+---
+- name: PROMTAIL - Create promtail container
+  community.docker.docker_container:
+    name: promtail
+    image: grafana/promtail:2.6.1
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/promtail/config/promtail.yaml:/etc/promtail/config.yml"
+      - "/var/lib/docker/containers:/var/lib/docker/containers"
+      - "/var/run/docker.sock:/var/run/docker.sock"

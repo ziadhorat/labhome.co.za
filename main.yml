@@ -1,0 +1,26 @@
+---
+- name: Setup the homeserver
+  hosts: all
+  become: true
+
+  tasks:
+    - name: MAIN - Setup server
+      ansible.builtin.include_tasks: tasks/core/setup.yml
+
+    - name: MAIN - Deploy nas apps
+      ansible.builtin.include_tasks: tasks/nas.yml
+
+    - name: MAIN - Deploy db apps
+      ansible.builtin.include_tasks: tasks/db.yml
+
+    - name: MAIN - Deploy dev apps
+      ansible.builtin.include_tasks: tasks/dev.yml
+
+    - name: MAIN - Deploy net apps
+      ansible.builtin.include_tasks: tasks/net.yml
+
+    - name: MAIN - Deploy services apps
+      ansible.builtin.include_tasks: tasks/services.yml
+
+    - name: MAIN - Reboot server
+      ansible.builtin.include_tasks: tasks/core/reboot.yml

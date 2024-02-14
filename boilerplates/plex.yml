@@ -1,0 +1,24 @@
+---
+- name: PLEX - Create plex container
+  community.docker.docker_container:
+    name: plex
+    image: linuxserver/plex:arm64v8-latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    network_mode: host
+    user: 'root:root'
+    volumes:
+      - "{{ docker_dir }}/plex/config:/config"
+      - "{{ tv_dir }}/tv:/tv"
+      - "{{ movie_dir }}/movies:/movies"
+      - "{{ movie_dir }}/music:/music"
+    env:
+      PUID: "{{ puid }}" 
+      PGID: "{{ pgid }}" 
+      VERSION: "docker"
+      TZ: "{{ timezone }}"
+      DOCKER_MODS: "caedis/plex-remove-autoplay-delay:latest"
+      # PLEX_CLAIM: "claim-claim/code/here/to/setup"
+

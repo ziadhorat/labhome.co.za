@@ -1,0 +1,14 @@
+---
+- name: SAMBA - Create samba container
+  community.docker.docker_container:
+    name: samba
+    image: adevur/easy-samba:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    network_mode: host
+    volumes:
+      - "{{ samba_dir }}:/share"
+
+# https://github.com/adevur/docker-easy-samba/blob/master/docs/TUTORIAL.md

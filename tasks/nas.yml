@@ -1,0 +1,28 @@
+---
+- name: NAS
+  hosts: all
+  become: true
+  vars_files: "../group_vars/nas/vars.yml"
+
+  tasks:
+    - name: nas - Deploy nas.domain.tld apps
+      when: inventory_hostname == "nas.domain.tld"
+      ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
+      loop:
+        - cadvisor                                                  # [9098]
+        - portainer_agent                                           # [9099]
+        - scrutiny                                                  # [9010]
+        - lidarr                                                    # [9009]
+        - qbittorrent                                               # [8888]
+        - crafty                                                    # [9008]
+        - jellyfin                                                  # [8096]
+        - prowlarr                                                  # [9006]
+        - jackett                                                   # [9004]
+        - radarr                                                    # [9003]
+        - sonarr                                                    # [9002]
+        - overseerr                                                 # [9001]
+        - deluge                                                    # [9000]
+        - plex                                                      # [5432]
+        - samba                                                     # [445]
+        - promtail                                                  # NULL
+        - watchtower                                                # NULL

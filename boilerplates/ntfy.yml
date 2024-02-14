@@ -1,0 +1,18 @@
+---
+- name: NTFY - Create ntfy container
+  community.docker.docker_container:
+    name: ntfy
+    image: binwiederhier/ntfy:v2.7.0-arm64v8
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    command: "serve"
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/ntfy/config:/etc/ntfy"
+    env:
+      PASSWORD: "{{ default_pass }}"
+

@@ -1,0 +1,25 @@
+---
+- name: SCRUTINY - Create scrutiny container
+  community.docker.docker_container:
+    name: scrutiny
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9010:8080'
+    capabilities:
+      - SYS_ADMIN
+      - SYS_RAWIO
+    devices:
+     - "/dev/sda1:/dev/sda1:ro"
+     - "/dev/sdb1:/dev/sdb1:ro"
+     - "/dev/nvme0n1:/dev/nvme0n1:ro"
+     - "/dev/mmcblk1:/dev/mmcblk1:ro"
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/scrutiny/config:/opt/scrutiny/config"
+      - "{{ docker_dir }}/scrutiny/influxdb2:/opt/scrutiny/influxdb"
+      - "/run/udev:/run/udev:ro"

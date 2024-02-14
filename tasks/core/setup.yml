@@ -1,0 +1,12 @@
+---
+- name: SETUP - Init User
+  ansible.builtin.include_tasks: "tasks/core/init_user.yml"
+
+- name: SETUP - Update server and install essential packages
+  ansible.builtin.include_tasks: "tasks/core/essential.yml"
+
+- name: SETUP - Install docker
+  ansible.builtin.include_tasks: "tasks/core/docker.yml"
+
+- name: SETUP - Modify ownership of data and docker_apps directories
+  ansible.builtin.include_tasks: "tasks/core/add_ownership.yml"

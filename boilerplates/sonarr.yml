@@ -1,0 +1,22 @@
+---
+- name: SONARR - Create sonarr container
+  community.docker.docker_container:
+    name: sonarr
+    image: lscr.io/linuxserver/sonarr:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9002:8989'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/sonarr/config:/config"
+      - "{{ data_dir }}/media/downloads:/downloads"
+      - "{{ tv_dir }}/tv:/tv"
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"

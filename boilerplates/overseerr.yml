@@ -1,0 +1,20 @@
+---
+- name: OVERSEERR - Create overseerr container
+  community.docker.docker_container:
+    name: overseerr
+    image: sctx/overseerr
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9001:5055'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/overseerr/config:/app/config"
+    env:
+      PORT: "5055"
+      TZ: "{{ timezone }}"
+      LOG_LEVEL: "debug"

@@ -1,0 +1,17 @@
+---
+- name: CLOUDFLARE - Create cloudflare container
+  community.docker.docker_container:
+    name: cloudflare
+    image: cloudflare/cloudflared:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: 'root:root'
+    command: tunnel --no-autoupdate run
+    networks:
+      - name: homelab
+      - name: bridge
+    env:
+      TUNNEL_TOKEN: "{{ cf_tunnel_token }}"
+

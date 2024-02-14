@@ -1,0 +1,27 @@
+---
+- name: NGINX - Create nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: jc21/nginx-proxy-manager:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: 'root:root'
+    published_ports:
+      - '9000:81'
+      - '80:80'
+      - '443:443'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/nginx/data:/data"
+      - "{{ docker_dir }}/nginx/letsencrypt:/etc/letsencrypt"
+    env:
+      DB_MYSQL_HOST: "{{ host_db }}"
+      DB_MYSQL_PORT: "3306"
+      DB_MYSQL_USER: "root"
+      DB_MYSQL_PASSWORD: "{{ default_pass }}"
+      DB_MYSQL_NAME: "nginx"
+
+# Theming: https://docs.theme-park.dev/themes/nginx-proxy-manager/#screenshots

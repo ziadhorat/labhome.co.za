@@ -1,0 +1,40 @@
+---
+- name: ESSENTIAL - Update apt packages
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    upgrade: full
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+
+- name: ESSENTIAL - Install packages
+  ansible.builtin.package:
+    name: "{{ packages }}"
+    state: present
+
+- name: ESSENTIAL - Create Docker directory
+  ansible.builtin.file:
+    path: "{{ docker_dir }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+
+- name: ESSENTIAL - Create data & scripts directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+  loop:
+    - "{{ data_dir }}"
+
+- name: ESSENTIAL - Suppress login messages
+  ansible.builtin.file:
+    name: /home/{{ username }}/.hushlogin
+    mode: "0644"
+    state: touch
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    modification_time: preserve
+    access_time: preserve

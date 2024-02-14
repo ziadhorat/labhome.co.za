@@ -1,0 +1,41 @@
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings
+title: TITLE
+favicon: 
+color: gray
+headerStyle: clean
+hideVersion: true
+hideHeader: true
+statusStyle: "dot"
+fiveColumns: true
+useEqualHeights: true # overrides global setting
+hideErrors: true
+
+background:
+  image: 
+  opacity: 50 # 0-100
+
+cardBlur: xl # sm, "", md, etc... see https://tailwindcss.com/docs/backdrop-blur
+
+providers:
+  openweathermap: ***********
+
+layout:
+  1:
+    header: false
+  2:
+    header: false
+  3:
+    header: false
+  4:
+    header: false
+  5:
+    header: false
+  Work:
+    header: false
+  Homelab:
+    header: false
+  Personal:
+    header: false
+  Trackers:
+    header: false

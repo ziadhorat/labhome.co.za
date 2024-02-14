@@ -1,0 +1,35 @@
+#
+# configure promtail to scrape docker logs for a specific
+# docker compose project
+# https://cylab.be/blog/241/use-loki-to-monitor-the-logs-of-your-docker-
+# compose-application
+#
+
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+clients:
+  - url: https://loki.internal.domain.tld/loki/api/v1/push
+    external_labels:
+      host: nas.domain.tld
+
+
+scrape_configs:
+  - job_name: nas.domain.tld
+    # use docker.sock to filter containers
+    docker_sd_configs:
+      - host: "unix:///var/run/docker.sock"
+        refresh_interval: 15s
+    # use container name to create a loki label
+    relabel_configs:
+      - source_labels: ['__meta_docker_container_name']
+        regex: '/(.*)'
+        target_label: 'name'
+      - source_labels: ['__meta_docker_container_id']
+        target_label: 'id'
+      - source_labels: ['__meta_docker_container_log_stream']
+        target_label: 'logstream'
+      - source_labels: ['__meta_docker_container_network_mode']
+        target_label: 'network_mode'
+    

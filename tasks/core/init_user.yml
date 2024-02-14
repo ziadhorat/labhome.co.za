@@ -1,0 +1,34 @@
+- name: INIT_USER -Create a new regular user with sudo privileges
+  user:
+    name: "{{ username }}"
+    state: present
+    groups: [sudo, adm]
+    append: true
+    create_home: true
+
+- name: INIT_USER -Set authorized key for remote user
+  ansible.posix.authorized_key:
+    user: "{{ username }}"
+    state: present
+    key: "{{ lookup('file', '../../group_vars/config-files/authorized_keys') }}"
+
+# Disable dnsmasq - needed this for something, can't remember what
+
+# - name: INIT_USER - reload systemd daemons
+#   systemd:
+#     daemon_reload: yes
+
+# - name: INIT_USER - gather service facts
+#   ansible.builtin.service_facts:
+
+# - name: INIT_USER - stop dnsmasq
+#   become: yes
+#   become_user: root
+#   systemd:
+#     name: dnsmasq
+#     state: stopped
+#     enabled: no
+
+# - name: INIT_USER - reload systemd daemons
+#   systemd:
+#     daemon_reload: yes

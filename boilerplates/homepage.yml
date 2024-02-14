@@ -1,0 +1,15 @@
+---
+- name: HOMEPAGE - Create homepage container
+  community.docker.docker_container:
+    name: homepage
+    image: ghcr.io/gethomepage/homepage:main
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9011:3000'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/homepage/config:/app/config"

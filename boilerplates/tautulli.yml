@@ -1,0 +1,19 @@
+---
+- name: TAUTULLI - Create tautulli container
+  community.docker.docker_container:
+    name: tautulli
+    image: ghcr.io/tautulli/tautulli
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9010:8181'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/tautulli/config:/config"
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"

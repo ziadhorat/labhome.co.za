@@ -1,0 +1,26 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- 5:
+    - AppName:
+        icon: http://domain.tld/favicon.ico
+        href: http://domain.tld
+    - AppName:
+        icon: http://domain.tld/favicon.ico
+        href: http://domain.tld
+    - AppName:
+        icon: http://domain.tld/favicon.ico
+        href: http://domain.tld
+    - AppName:
+        icon: http://domain.tld/favicon.ico
+        href: http://domain.tld
+    - AppName:
+        icon: http://domain.tld/favicon.ico
+        href: http://domain.tld
+    - AppName:
+        icon: http://domain.tld/favicon.ico
+        href: http://domain.tld
+    - AppName:
+        icon: http://domain.tld/favicon.ico
+        href: http://domain.tld

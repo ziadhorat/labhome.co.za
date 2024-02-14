@@ -1,0 +1,22 @@
+---
+- name: RADARR - Create radarr container
+  community.docker.docker_container:
+    name: radarr
+    image: lscr.io/linuxserver/radarr:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9003:7878'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/radarr/config:/config"
+      - "{{ data_dir }}/media/downloads:/downloads"
+      - "{{ movie_dir }}/movies:/movies"
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"

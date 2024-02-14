@@ -1,0 +1,22 @@
+---
+- name: PAIRDROP - Create pairdrop container
+  community.docker.docker_container:
+    name: pairdrop
+    image: linuxserver/pairdrop:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - 9000:3000
+    networks:
+      - name: homelab
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"
+      RATE_LIMIT: "false"
+      WS_FALLBACK: "false"
+      DEBUG_MODE: "false"

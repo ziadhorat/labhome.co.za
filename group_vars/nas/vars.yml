@@ -1,0 +1,51 @@
+---
+timezone: Africa/Johannesburg
+username: 
+email: 
+default_pass: 
+host_services: 
+host_net: 
+host_dev: 
+host_db: 
+domain_internal: 
+domain_external: 
+ip_address: 
+subnet: 
+docker_dir: 
+data_dir: 
+samba_dir:
+movie_dir:
+tv_dir:
+
+puid: 
+pgid: 
+
+pia_user: 
+pia_pass: 
+
+ts_auth_key: 
+cf_tunnel_token: 
+watchtower_discord_key: 
+
+packages:
+  - unzip
+  - wget
+  - curl
+  - git
+  - python3
+  - python3-pip
+  - pipx
+  - python3-docker
+  - python3-setuptools
+
+docker_dependencies:
+  - ca-certificates
+  - gnupg
+  - curl
+
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin

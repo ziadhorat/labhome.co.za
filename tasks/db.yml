@@ -1,0 +1,17 @@
+---
+- name: DB
+  hosts: db
+  become: true
+  vars_files: "../group_vars/general/vars.yml"
+
+  tasks:
+    - name: DB - Deploy db.domain.tld apps
+      when: inventory_hostname == "db.domain.tld"
+      ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
+      loop:
+        - portainer_agent                                             # [9099]
+        - cadvisor                                                    # [9098]
+        - postgres                                                    # [5432]
+        - mysql                                                       # [3306]
+        - watchtower                                                  # NULL
+        - promtail                                                    # NULL

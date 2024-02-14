@@ -1,0 +1,20 @@
+---
+- name: POSTGRES - Create postgres container
+  community.docker.docker_container:
+    name: postgres
+    image: postgres:14-alpine
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '5432:5432'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/postgres/data:/var/lib/postgresql/data"
+    env:
+      POSTGRES_PASSWORD: "{{ default_pass }}"
+      POSTGRES_USER: "{{ username }}"
+      POSTGRES_DB: "postgres"

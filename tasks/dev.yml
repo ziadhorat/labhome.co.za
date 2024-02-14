@@ -1,0 +1,22 @@
+---
+- name: DEV
+  hosts: dev
+  become: true
+  vars_files: "../group_vars/general/vars.yml"
+
+  tasks:
+    - name: DEV Deploy dev.domain.tld apps
+      when: inventory_hostname == "dev.domain.tld"
+      ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
+      loop:
+        - portainer_agent                                             # [9099]
+        - cadvisor                                                    # [9098]
+        - prometheus                                                  # [9006]
+        - codeserver                                                  # [9005]
+        - grafana                                                     # [9004]
+        - portainer                                                   # [9003]
+        - gitea                                                       # [9000] [222]
+        - loki                                                        # [3100]
+        - watchtower                                                  # NULL
+        - promtail                                                    # NULL
+        - gitea_runner                                                # NULL

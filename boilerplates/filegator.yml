@@ -1,0 +1,19 @@
+---
+- name: FILEGATOR - Create filegator container
+  community.docker.docker_container:
+    name: filegator
+    image: filegator/filegator:v7.9.2-multiarch
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: "root:root"
+    ports:
+      - "9006:8080"
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/filegator/data:/var/www/filegator/repository"
+      - "{{ docker_dir }}/filegator/config/users.json:/var/www/filegator/private/users.json"
+
+

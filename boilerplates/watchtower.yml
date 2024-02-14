@@ -1,0 +1,21 @@
+---
+- name: WATCHTOWER - Create watchtower container
+  community.docker.docker_container:
+    name: watchtower
+    image: containrrr/watchtower:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    networks:
+      - name: homelab
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      TZ: "{{ timezone }}"
+      WATCHTOWER_DEBUG: "false"     
+      WATCHTOWER_CLEANUP: "true" 
+      WATCHTOWER_SCHEDULE: "0 0 3 */7 * *" 
+      WATCHTOWER_NOTIFICATION_REPORT: "true" 
+      WATCHTOWER_NOTIFICATION_URL: "discord://{{ watchtower_discord_key }}@{{ watchtower_discord_channel }}?title=Watchtower"
+      

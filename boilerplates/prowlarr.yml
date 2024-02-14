@@ -1,0 +1,20 @@
+---
+- name: PROWLARR - Create prowlarr container
+  community.docker.docker_container:
+    name: prowlarr
+    image: lscr.io/linuxserver/prowlarr:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9006:9696'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/prowlarr/config:/config"
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"

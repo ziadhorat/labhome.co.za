@@ -1,0 +1,22 @@
+---
+- name: LIDARR - Create lidarr container
+  community.docker.docker_container:
+    name: lidarr
+    image: lscr.io/linuxserver/lidarr:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9009:8686'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/lidarr/config:/config"
+      - "{{ data_dir }}/media/downloads:/downloads"
+      - "{{ movie_dir }}/music:/music"
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"

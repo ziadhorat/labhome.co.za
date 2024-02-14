@@ -1,0 +1,27 @@
+---
+- name: GITEA - Create gitea container
+  community.docker.docker_container:
+    name: gitea
+    image: gitea/gitea:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9000:3000'
+      - "222:22"
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/gitea/data:/data"
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    env:
+      USER_UID: "{{ puid }}"
+      USER_GID: "{{ pgid }}"
+      GITEA__database__DB_TYPE: "mysql"
+      GITEA__database__HOST: "{{ host_db }}"
+      GITEA__database__NAME: "gitea"
+      GITEA__database__USER: "root"
+      GITEA__database__PASSWD: "{{ default_pass }}"

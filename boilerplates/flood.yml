@@ -1,0 +1,21 @@
+---
+- name: FLOOD - Create flood container
+  community.docker.docker_container:
+    name: flood
+    image: jesec/flood:master
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9013:3001'
+    user: 'root:root'
+    command: "--port 3001 --allowedpath /data"
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/flood/data:/data"
+      - "{{ docker_dir }}/flood/config:/config"
+    env:
+      HOME: "/config"
+      TZ: "{{ timezone }}"
