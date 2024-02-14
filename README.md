@@ -13,7 +13,6 @@
 - [Usage](#usage)
 - [Footnotes](#footnotes)
 
-
 ## Screenshots
 
 ### Homepage
@@ -23,7 +22,6 @@ Insert image of homepage...
 ### Network Diagram
 
 Insert image of network diagram...
-
 
 ## Services:
 
@@ -86,7 +84,6 @@ Insert image of network diagram...
 - Run: `ansible-playbook main.yml`
 - After the initial run, gitea + gitea_runners do all future deploys
 
-
 ## Issues
 
 ### OrangePi 5 Plus Joshua Riek / Debian eMMc issue
@@ -120,7 +117,7 @@ fi
 >
 > **[LinuxServer.IO](https://www.linuxserver.io/)** is a great resource - especially for finding arm64 compatible docker images
 >
-> Locate services for you: **[Awesome-Selfhosted](https://awesome-selfhosted.net/) / [Awesom-Docker](https://github.com/veggiemonk/awesome-docker)**
+> Locate services for you: **[Awesome-Selfhosted](https://awesome-selfhosted.net/) / [Awesome-Docker](https://github.com/veggiemonk/awesome-docker)**
 >
 > Homepage examples: **[u/deleted](https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F40-containers-counting-v0-zb6gsaxnbzga1.png%3Fs%3D0feb92cca69bb70fb4cf74de6cff0aee8b4e1843)**
 >
