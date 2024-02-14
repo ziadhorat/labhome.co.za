@@ -1,5 +1,5 @@
 # Homelab example
-## _"labhome.co.za."_
+## _"labhome.co.za"_
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -101,8 +101,6 @@ Insert image of network diagram...
 - - Run the following **on** the server
 
 ```shell
-echo
-echo Installing OS
 if [ "$wipedisk" == "yes" ]; then
     dd if=/dev/zero of=/dev/mmcblk0 
 fi
