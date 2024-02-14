@@ -8,7 +8,7 @@
 - [Contents](#contents)
 - [Screenshots](#screenshots)
 - - [Homepage](#screenshots)
-- - [Network Diagram](#screenshots)
+- - [Homelab Diagram](#screenshots)
 - [Services](#services)
 - [Usage](#usage)
 - [Footnotes](#footnotes)
@@ -17,11 +17,12 @@
 
 ### Homepage
 
-Insert image of homepage...
+![Homepage](assets/homepage.png?raw=true "Title")
 
-### Network Diagram
 
-Insert image of network diagram...
+### Homelab Diagram
+
+![Homelab Diagram](assets/diagram.png?raw=true "Title")
 
 ## Services:
 
