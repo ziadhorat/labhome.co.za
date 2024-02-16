@@ -38,11 +38,11 @@
 - - [Portainer](https://hub.docker.com/r/portainer/portainer-ce) - Lightweight service delivery platform for containerized applications.
 - - [Grafana](https://hub.docker.com/r/grafana/grafana) - Grafana is the open source analytics & monitoring solution for every database.
 - - [Code-Server](https://docs.linuxserver.io/images/docker-code-server/) - Code-server is VS Code running on a remote server, accessible through the browser.  
-- - [Gitea](https://docs.gitea.com/installation/install-with-docker) - AForge software package for hosting software development version control using Git.
+- - [Gitea](https://docs.gitea.com/installation/install-with-docker) - Forge software package for hosting software development version control using Git.
 - - [Gitea-Runner](https://docs.gitea.com/usage/actions/act-runner) - Runner of Gitea Actions.
 
 - **NAS**
-- - [Crafty](https://hub.docker.com/r/arcadiatechnology/crafty-4) - Crafty 4 is the next iteration of our Minecraft Server Wrapper/Controller/Launcher.
+- - [Crafty](https://hub.docker.com/r/arcadiatechnology/crafty-4) - Minecraft Server Wrapper/Controller/Launcher.
 - - [Plex](https://hub.docker.com/r/linuxserver/plex) - Hosts & organizes movies.
 - - [Jellyfin](https://hub.docker.com/r/jellyfin/jellyfin) - The Free Software Media Browser.
 - - [Scrutiny](https://github.com/AnalogJ/scrutiny#docker) - WebUI for smartd S.M.A.R.T monitoring.
