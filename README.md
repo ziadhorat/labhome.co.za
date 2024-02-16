@@ -8,7 +8,8 @@
 - [Contents](#contents)
 - [Screenshots](#screenshots)
 - - [Homepage](#screenshots)
-- - [Homelab Diagram](#screenshots)
+- - [Monitoring](#screenshots)
+- - [Diagram](#screenshots)
 - [Services](#services)
 - [Usage](#usage)
 - [Footnotes](#footnotes)
@@ -20,7 +21,11 @@
 ![Homepage](assets/homepage.png?raw=true "Title")
 
 
-### Homelab Diagram
+### Monitoring
+
+![Monitoring](assets/monitoring.png?raw=true "Title")
+
+### Diagram
 
 ![Homelab Diagram](assets/diagram.png?raw=true "Title")
 
