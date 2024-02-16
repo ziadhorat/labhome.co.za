@@ -123,4 +123,4 @@ fi
 >
 > Homepage examples: **[u/deleted](https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F40-containers-counting-v0-zb6gsaxnbzga1.png%3Fs%3D0feb92cca69bb70fb4cf74de6cff0aee8b4e1843)**
 >
-> This projects backbones were originally forkec from **[rishavnandi/ansible_homelab](https://github.com/rishavnandi/ansible_homelab)**
+> This projects backbones was originally forked from **[rishavnandi/ansible_homelab](https://github.com/rishavnandi/ansible_homelab)**
