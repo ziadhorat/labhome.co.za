@@ -1,4 +1,4 @@
-# Homelab example
+# Snippets of my homelab
 ## _"labhome.co.za"_
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
