@@ -1,0 +1,19 @@
+---
+- name: YAADE - Create yaade container
+  community.docker.docker_container:
+    name: yaade
+    image: esperotech/yaade:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9007:9339'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/yaade/data:/app/data"
+    env:
+      YAADE_ADMIN_USERNAME: "{{ username }}"

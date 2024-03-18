@@ -1,0 +1,26 @@
+---
+- name: DUPLICATI - Create duplicati container
+  community.docker.docker_container:
+    name: duplicati
+    image: lscr.io/linuxserver/duplicati:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9017:8200'
+    user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}:/source"
+      - "{{ docker_dir }}/duplicati/config:/config"
+      - "{{ docker_dir }}/duplicati/data:/backups"
+    env:
+      # CLI_ARGS: "optional"
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"
+
+# oAuthHandler: https://duplicati-oauth-handler.appspot.com/

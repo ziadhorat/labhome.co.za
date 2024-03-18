@@ -1,0 +1,19 @@
+---
+- name: FLARESOLVERR - Create flaresolverr container
+  community.docker.docker_container:
+    name: flaresolverr
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9012:8191'
+    # user: 'root:root'
+    networks:
+      - name: homelab
+    env:
+      TZ: "{{ timezone }}"
+      LOG_LEVEL: "info"
+      LOG_HTML: "false"
+      CAPTCHA_SOLVER: "none"

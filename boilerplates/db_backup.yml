@@ -1,0 +1,56 @@
+---
+- name: DB_BACKUP - Create db_backup container
+  community.docker.docker_container:
+    name: db_backup
+    image: tiredofit/db-backup
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/db_backup/backup:/backup"
+    env:
+      CONTAINER_ENABLE_MONITORING: "FALSE"
+      CONTAINER_NAME: "db_backup"
+      TIMEZONE: "{{ timezone }}"
+      USER_DBBACKUP: "{{ puid }}"
+      GROUP_DBBACKUP: "{{ pgid }}"
+      BACKUP_JOB_CONCURRENCY: "1"
+
+      DEFAULT_CHECKSUM: "NONE"
+      DEFAULT_COMPRESSION: "ZSTD"
+      DEFAULT_BACKUP_INTERVAL: "1440"
+      DEFAULT_BACKUP_BEGIN: "0800"
+      DEFAULT_CLEANUP_TIME: "1440"
+      DEFAULT_BACKUP_BLACKOUT_BEGIN: "0300"
+      DEFAULT_BACKUP_BLACKOUT_END: "0600"
+      DEFAULT_LOG_LEVE: "debug"
+
+      DB01_TYPE: "mysql"
+      DB01_HOST: "{{ host_db }}"
+      DB01_USER: "root"
+      DB01_PASS: "{{ default_pass }}"
+      DB01_NAME: "all"
+
+      DB02_TYPE: "postgres"
+      DB02_DEFAULT_AUTH: "postgres"
+      DB02_HOST: "{{ host_db }}"
+      DB02_USER: "{{ username }}"
+      DB02_PASS: "{{ default_pass }}"
+      DB02_NAME: "joplin"
+
+      DB03_TYPE: "postgres"
+      DB03_DEFAULT_AUTH: "postgres"
+      DB03_HOST: "{{ host_db }}"
+      DB03_USER: "{{ username }}"
+      DB03_PASS: "{{ default_pass }}"
+      DB03_NAME: "postgres"
+
+# MAIL_FROM	What email address to send mail from for errors		
+# MAIL_TO	What email address to send mail to for errors. Send to multiple by seperating with comma.		
+# SMTP_HOST	What SMTP server to use for sending mail		x
+# SMTP_PORT	What SMTP port to use for sending mail

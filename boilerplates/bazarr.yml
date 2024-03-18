@@ -1,0 +1,23 @@
+---
+- name: BAZARR - Create bazarr container
+  community.docker.docker_container:
+    name: bazarr
+    image: lscr.io/linuxserver/bazarr:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9013:6767'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/bazarr/config:/config"
+      - "{{ movie_dir }}/movies:/movies" #optional
+      - "{{ tv_dir }}/tv:/tv" #optional
+    env:
+      PUID: "{{ puid }}"
+      PGID: "{{ pgid }}"
+      TZ: "{{ timezone }}"

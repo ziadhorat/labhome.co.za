@@ -15,5 +15,3 @@
     volumes:
       - "{{ docker_dir }}/filegator/data:/var/www/filegator/repository"
       - "{{ docker_dir }}/filegator/config/users.json:/var/www/filegator/private/users.json"
-
-

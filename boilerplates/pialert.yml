@@ -1,0 +1,23 @@
+---
+- name: PIALERT - Create pialert container
+  community.docker.docker_container:
+    name: pialert
+    image: jokobsk/pi.alert:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    # published_ports:
+      # - '900X:XXXX'
+    user: 'root:root'
+    network_mode: host
+    volumes:
+    # after first start, edit pialert.conf -> SCAN_SUBNETS=['192.168.88.0/24 --interface=eth0']
+      - "{{ docker_dir }}/pialert/config:/home/pi/pialert/config"
+      - "{{ docker_dir }}/pialert/db:/home/pi/pialert/db"
+      - "{{ docker_dir }}/pialert/logs:/home/pi/pialert/front/log"
+    env:
+      PORT: "9002"
+      TZ: "{{ timezone }}"
+      HOST_USER_ID: "{{ puid }}"
+      HOST_USER_GID: "{{ pgid }}"

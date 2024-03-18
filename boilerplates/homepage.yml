@@ -2,7 +2,7 @@
 - name: HOMEPAGE - Create homepage container
   community.docker.docker_container:
     name: homepage
-    image: ghcr.io/gethomepage/homepage:main
+    image: ghcr.io/gethomepage/homepage:latest
     restart_policy: always
     state: started
     pull: true

@@ -52,6 +52,8 @@
 - - [Sonarr](https://hub.docker.com/r/linuxserver/sonarr) - PVR for Usenet and BitTorrent users.
 - - [Lidarr](https://hub.docker.com/r/linuxserver/lidarr) - Music collection manager for Usenet and BitTorrent users.
 - - [Prowlarr](https://hub.docker.com/r/linuxserver/prowlarr) - Indexer manager/proxy built on the popular arr stack to integrate with your various PVR apps.
+- - [Unpackerr](https://github.com/Unpackerr/unpackerr) - Extracts downloads for Radarr, Sonarr, Lidarr, Readarr, and/or a Watch folder.
+- - [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) - FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
 - - [qBitTorrent](https://hub.docker.com/r/linuxserver/transmission) -  Torrent client. [Common issue](https://github.com/qbittorrent/qBittorrent/issues/8095#issuecomment-472740702)
 
 - **Services**
@@ -66,6 +68,11 @@
 - - [DrawIO](https://hub.docker.com/r/jgraph/drawio) - Diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams.
 - - [Ghost](https://hub.docker.com/_/ghost) - Ghost is a free and open source blogging platform written in JavaScript.
 - - [Wordpress](https://hub.docker.com/_/wordpress) - The WordPress rich content management system can utilize plugins, widgets, and themes.
+- - [Yaade](https://github.com/EsperoTech/yaade) - Yaade is an open-source, self-hosted, collaborative API development environment.
+- - [PHPMyAdmin](https://hub.docker.com/_/phpmyadmin) - Handles the administration of MySQL over the Web. 
+- - [PGAdmin](https://hub.docker.com/r/dpage/pgadmin4) - pgAdmin 4 is a web based administration tool for the PostgreSQL database.
+- - [DB-Backup](https://github.com/tiredofit/docker-db-backup) - This is a container for backing up multiple types of DB Servers
+- - [Duplicati](https://docs.linuxserver.io/images/docker-duplicati/) - Duplicati was designed for online backups from scratch.
 
 - **Network**
 - - [PiHole](https://hub.docker.com/r/pihole/pihole) - DNS sinkhole.
@@ -82,6 +89,7 @@
 - - [Promtail](https://hub.docker.com/r/grafana/promtail) - Agent which ships the contents of local logs to a private Loki instance.
 - - [cAdvisor](https://hub.docker.com/r/google/cadvisor) - Provides an understanding of the resource usage and performance characteristics of containers.
 - - [Portainer-Agent](https://hub.docker.com/r/portainer/agent) - An agent used to manage all the resources in a Swarm cluster. 
+- - [PiAlert](https://github.com/pucherot/Pi.Alert) - WIFI / LAN intruder detector.
 
 ## Usage
 

@@ -1,0 +1,21 @@
+---
+- name: PGADMIN - Create pgadmin container
+  community.docker.docker_container:
+    name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9015:80'
+    user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/pgadmin/data:/var/lib/pgadmin"
+    env:
+      PGADMIN_DEFAULT_EMAIL: "{{ email }}"
+      PGADMIN_DEFAULT_PASSWORD: "{{ default_pass }}"
+      PGADMIN_LISTEN_PORT: "80"
