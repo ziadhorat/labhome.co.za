@@ -76,6 +76,7 @@
 
 - **Network**
 - - [PiHole](https://hub.docker.com/r/pihole/pihole) - DNS sinkhole.
+- - [PiAlert](https://github.com/pucherot/Pi.Alert) - WIFI / LAN intruder detector.
 - - [Nginx](https://hub.docker.com/r/jc21/nginx-proxy-manager) - Manage Nginx proxy hosts with a simple, powerful interface. [Config](https://pimylifeup.com/raspberry-pi-nginx-proxy-manager/)
 - - [Tailscale](https://hub.docker.com/r/tailscale/tailscale) - Connect your devices and users together in your own secure virtual private network. 
 - - [CloudFlared](https://github.com/cloudflare/cloudflared) - Tunneling daemon that proxies traffic from the Cloudflare network to your origins.
@@ -89,7 +90,6 @@
 - - [Promtail](https://hub.docker.com/r/grafana/promtail) - Agent which ships the contents of local logs to a private Loki instance.
 - - [cAdvisor](https://hub.docker.com/r/google/cadvisor) - Provides an understanding of the resource usage and performance characteristics of containers.
 - - [Portainer-Agent](https://hub.docker.com/r/portainer/agent) - An agent used to manage all the resources in a Swarm cluster. 
-- - [PiAlert](https://github.com/pucherot/Pi.Alert) - WIFI / LAN intruder detector.
 
 ## Usage
 
