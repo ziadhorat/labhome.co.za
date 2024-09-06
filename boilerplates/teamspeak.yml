@@ -1,0 +1,26 @@
+---
+- name: TEAMSPEAK - Create teamspeak container
+  community.docker.docker_container:
+    name: teamspeak
+    image: teamspeak
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9987:9987/udp'
+      - '10011:10011'
+      - '30033:30033'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    env:
+      TS3SERVER_DB_PLUGIN: 'ts3db_mariadb'
+      TS3SERVER_DB_SQLCREATEPATH: 'create_mariadb'
+      TS3SERVER_DB_HOST: "{{ host_db }}"
+      TS3SERVER_DB_USER: "root"
+      TS3SERVER_DB_PASSWORD: "{{ default_pass }}"
+      TS3SERVER_DB_NAME: "teamspeak"
+      TS3SERVER_DB_WAITUNTILREADY: '30'
+      TS3SERVER_LICENSE: 'accept'

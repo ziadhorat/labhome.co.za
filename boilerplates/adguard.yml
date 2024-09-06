@@ -1,0 +1,29 @@
+---
+- name: ADGUARD - Create adguard container
+  community.docker.docker_container:
+    name: adguard
+    image: adguard/adguardhome
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+      # DNS-over-TLS
+      - '853:853/tcp'
+      # DNS-over-QUIC
+      - '784:784/udp'
+      - '853:853/udp'
+      - '8853:8853/udp'
+      # DNSCrypt
+      - '5443:5443/tcp'
+      - '5443:5443/udp'
+      - '9003:80' #3000 for setup, 80 after
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/adguardhome/conf:/opt/adguardhome/conf"
+      - "{{ docker_dir }}/adguardhome/work:/opt/adguardhome/work"

@@ -1,0 +1,19 @@
+---
+- name: NOCODB - Create nocodb container
+  community.docker.docker_container:
+    name: nocodb
+    image: nocodb/nocodb:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9013:8080'
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/nocodb/data:/usr/app/data/"
+    env:
+      NC_DB: "pg://{{ host_db }}:5432?u={{ username }}&p={{ default_pass }}&d=nocodb"
+      NC_AUTH_JWT_SECRET: "{{ nc_auth_jwt_secret }}"

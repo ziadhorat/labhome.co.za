@@ -1,0 +1,21 @@
+---
+- name: DOZZLE - Create dozzle container
+  community.docker.docker_container:
+    name: dozzle
+    image: amir20/dozzle:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    # command: agent
+    published_ports:
+      - '9009:8080'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    env:
+      DOZZLE_REMOTE_AGENT: "host1.domain.tld:7007"
+

@@ -1,0 +1,23 @@
+---
+- name: EMBY - Create emby container
+  community.docker.docker_container:
+    name: emby
+    image: emby/embyserver
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '8096:8096' # HTTP port
+      # - '9021:8920' # HTTPS port
+    user: 'root:root'
+    networks:
+      - name: homelab
+    volumes:
+      - "/mnt/nfs/data/emby/data:/config"
+      - "/mnt/nfs:/media"
+    # devices:
+    #   - "/dev/dri:/dev/dri"
+    env:
+      UID: "{{ puid }}"
+      GID: "{{ pgid }}"

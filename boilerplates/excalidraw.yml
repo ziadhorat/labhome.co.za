@@ -1,0 +1,15 @@
+---
+- name: EXCALIDRAW - Create excalidraw container
+  community.docker.docker_container:
+    name: excalidraw
+    image: jauderho/excalidraw:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9017:80'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab

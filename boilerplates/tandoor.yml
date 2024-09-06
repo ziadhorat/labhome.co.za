@@ -1,0 +1,27 @@
+---
+- name: TANDOOR - Create tandoor container
+  community.docker.docker_container:
+    name: tandoor
+    image: vabene1111/recipes
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9018:8080'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/tandoor/staticfiles:/opt/recipes/staticfiles"
+      - "{{ docker_dir }}/tandoor/mediafiles:/opt/recipes/mediafiles"
+    env:
+      SECRET_KEY: "{{ tandoor_secret_key }}"
+      DB_ENGINE: "django.db.backends.postgresql"
+      POSTGRES_HOST: "{{ host_db }}"
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: "{{ username }}"
+      POSTGRES_PASSWORD: "{{ default_pass }}"
+      POSTGRES_DB: "tandoor"
+    

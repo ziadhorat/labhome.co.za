@@ -1,0 +1,42 @@
+---
+- name: NFS - Create nfs container
+  community.docker.docker_container:
+    name: nfs
+    image: mekayelanik/nfs-server-alpine:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '2049:2049'
+      - '111:111'
+      - '32765-32767:32765-32767'
+    user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    capabilities:
+      - SYS_ADMIN
+      - SETPCAP
+      - ALL
+    volumes:
+# # # Don't touch the FOLLOWING Mapping (/lib/modules). This is REQUIRED to run NFS as a container. ('sys_module' modprobe )
+      - /lib/modules:/lib/modules
+# # NFS Root directory in this container '/data' MUST BE MAPPED to a valid directory in the Host (Server Machine)
+# ## You CAN'T use different parent directory (for example /mnt/drive2/Movies) for child shares.
+# ### To share different Child shares on another Parent directory, you must use deploy another container. (Sorry, but this is how the NFS works)
+# #### To create More than one NFS server container, please use MACVLAN as given example below.
+      - /media:/data
+      - /media/movies/movies:/data/movies
+      - /media/tv/tv:/data/tv
+      - /media/movies/music:/data/music
+      - /media/nas/data:/data/data
+    env:
+      TZ: "{{ timezone }}"
+      NFS_MOUNT_PORT: "2049"
+      ALLOWED_CLIENT: "192.168.88.0/24"
+      NUMBER_OF_SHARES: "4"
+      NFS_EXPORT_1: "movies"
+      NFS_EXPORT_2: "tv"
+      NFS_EXPORT_3: "music"
+      NFS_EXPORT_4: "data"

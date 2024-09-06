@@ -1,0 +1,17 @@
+---
+- name: CONVOS - Create convos container
+  community.docker.docker_container:
+    name: convos
+    image: ghcr.io/convos-chat/convos:stable
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9017:3000'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/convos/data:/data"

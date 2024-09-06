@@ -1,0 +1,22 @@
+---
+- name: TGI - Create tgi container
+  community.docker.docker_container:
+    name: tgi
+    image: ghcr.io/huggingface/text-generation-inference:2.2.0
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9022:80'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    command: --model-id teknium/OpenHermes-2.5-Mistral-7B
+    shm_size: "1g"
+    runtime: "nvidia"
+    volumes:
+      - "{{ data_dir }}/tgi/data:/data"
+    env:
+      MODEL_ID: "teknium/OpenHermes-2.5-Mistral-7B"

@@ -1,0 +1,17 @@
+---
+- name: UPTIMEKUMA - Create uptimekuma container
+  community.docker.docker_container:
+    name: uptimekuma
+    image: louislam/uptime-kuma:1
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9010:3001'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/uptimekuma/data:/app/data"

@@ -9,17 +9,18 @@
       when: inventory_hostname == "services.domain.tld"
       ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
       loop:
+        - plex_spot                                                   # [9021]
+        - vaultwarden                                                 # [9020]
+        - 2fauth                                                      # [9019]
+        - plex                                                        # [5432]
+        - thelounge                                                   # 9018
         - db_backup                                                   # NULL
         - duplicati                                                   # 9017
         - phpmyadmin                                                  # 9016
         - pgadmin                                                     # 9015
         - wordpress2                                                  # 9014
-        - flood                                                       # 9013
         - wordpress                                                   # 9012
         - homepage                                                    # 9011
-        - tautulli                                                    # 9010
-        - drawio                                                      # 9003
-        - flame                                                       # 9009
         - homeassistant                                               # 9008
         - joplin                                                      # 9007
         - filegator                                                   # 9006
@@ -27,7 +28,7 @@
         - ittools                                                     # 9002
         - stirling                                                    # 9001
         - pairdrop                                                    # 9000
-        - portainer_agent                                             # [9099]
         - watchtower                                                  # NULL
         - cadvisor                                                    # [9098]
-        - promtail                                                    # NULL
+        - portainer_agent                                             # [9099]
+

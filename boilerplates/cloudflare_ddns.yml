@@ -1,0 +1,15 @@
+---
+- name: CLOUDFLARE_DDNS - Create cloudflare_ddns container
+  community.docker.docker_container:
+    name: cloudflare_ddns
+    image: favonia/cloudflare-ddns:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: false
+    networks:
+      - name: homelab
+    env:
+      CF_API_TOKEN: "{{ cf_ddns_token }}"
+      DOMAINS: "domain.tld"
+      PROXIED: "false"

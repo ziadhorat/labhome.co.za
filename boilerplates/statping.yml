@@ -1,0 +1,23 @@
+---
+- name: STATPING - Create statping container
+  community.docker.docker_container:
+    name: statping
+    image: adamboutcher/statping-ng:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9010:8080'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/statping/data:/app"
+    env:
+      DB_CONN: "postgres"
+      DB_HOST: "{{ host_db }}"
+      DB_USER: "{{ username }}"
+      DB_PASS: "{{ default_pass }}"
+      DB_DATABASE: "statping"

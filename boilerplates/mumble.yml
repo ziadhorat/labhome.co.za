@@ -1,0 +1,21 @@
+---
+- name: MUMBLE - Create mumble container
+  community.docker.docker_container:
+    name: mumble
+    image: mumblevoip/mumble-server:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '64738:64738/tcp'
+      - '64738:64738/udp'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/mumble/data:/data"
+    env:
+      MUMBLE_CONFIG_SERVER_PASSWORD: "{{ mumble_su_pw }}"
+      MUMBLE_SUPERUSER_PASSWORD: "{{ mumble_su_pw }}"

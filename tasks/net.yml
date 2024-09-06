@@ -9,12 +9,11 @@
       when: inventory_hostname == "net.domain.tld"
       ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
       loop:
-        - tailscale                                                   # NULL
-        - pialert                                                     # 9002
-        - pihole                                                      # 9001 [53, 67]
+        - wireguard                                                   # 9004, 51820
+        - adguard                                                     # 9003 [53, 67]
         - nginx                                                       # 9000 [80, 443]
+        - cloudflare_ddns                                             # NULL
         - cloudflare                                                  # NULL
-        - portainer_agent                                             # [9099]
         - watchtower                                                  # NULL
         - cadvisor                                                    # [9098]
-        - promtail                                                    # NULL
+        - portainer_agent                                             # [9099]

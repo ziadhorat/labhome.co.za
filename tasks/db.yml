@@ -11,7 +11,6 @@
       loop:
         - postgres                                                    # [5432]
         - mysql                                                       # [3306]
-        - portainer_agent                                             # [9099]
         - watchtower                                                  # NULL
         - cadvisor                                                    # [9098]
-        - promtail                                                    # NULL
+        - portainer_agent                                             # [9099]

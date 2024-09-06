@@ -9,6 +9,12 @@
       when: inventory_hostname == "nas.domain.tld"
       ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
       loop:
+        - firefox                                                     # [9018]
+        - excalidraw                                                  # [9017]
+        - tautulli                                                    # [9016]
+        - nfs                                                         # [2049]
+        - filebrowser                                                 # [9015]
+        - flood                                                       # [9014]
         - bazarr                                                      # [9013]
         - flaresolverr                                                # [9012]
         - scrutiny                                                    # [9010]
@@ -19,14 +25,11 @@
         - jellyfin                                                    # [8096]
         - prowlarr                                                    # [9006]
         - whisparr                                                    # [9005]
-        - jackett                                                     # [9004]
         - radarr                                                      # [9003]
         - sonarr                                                      # [9002]
         - overseerr                                                   # [9001]
-        - plex                                                        # [5432]
-        - deluge                                                      # [9000]
         - unpackerr                                                   # [NULL]
-        - portainer_agent                                             # [9099]
         - cadvisor                                                    # [9098]
-        - promtail                                                    # NULL
         - watchtower                                                  # NULL
+        - portainer_agent                                             # [9099]
+        - gitea_runner                                                # NULL

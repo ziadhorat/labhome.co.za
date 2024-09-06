@@ -1,0 +1,21 @@
+---
+- name: FTP - Create ftp container
+  community.docker.docker_container:
+    name: ftp
+    image: garethflowers/ftp-server
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '21:21'
+      - '40000-40009:40000-40009/tcp'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "/media:/home/zia"
+    env:
+      FTP_USER: "{{ username }}"
+      FTP_PASS: "{{ default_pass }}"

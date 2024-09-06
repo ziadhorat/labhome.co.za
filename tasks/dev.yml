@@ -9,15 +9,14 @@
       when: inventory_hostname == "dev.domain.tld"
       ansible.builtin.include_tasks: "../boilerplates/{{ item }}.yml"
       loop:
+        - uptimekuma                                                  # [9010]
         - yaade                                                       # [9007]
         - grafana                                                     # [9004]
-        - gitea                                                       # [9000] [222]
+        - gitea                                                       # [9000] [2222]
         - prometheus                                                  # [9006]
         - loki                                                        # [3100]
         - codeserver                                                  # [9005]
-        - portainer                                                   # [9003]
-        - portainer_agent                                             # [9099]
+        - portainer                                                   # [9002]
         - watchtower                                                  # NULL
         - cadvisor                                                    # [9098]
-        - promtail                                                    # NULL
-        - gitea_runner                                                # NULL
+        - portainer_agent                                             # [9099]

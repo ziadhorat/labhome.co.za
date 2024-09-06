@@ -1,0 +1,28 @@
+---
+- name: VAULTWARDEN - Create vaultwarden container
+  community.docker.docker_container:
+    name: vaultwarden
+    image: vaultwarden/server:latest
+    restart_policy: always
+    state: started
+    pull: true
+    privileged: true
+    published_ports:
+      - '9020:80'
+    # user: 'root:root'
+    # network_mode: host
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ docker_dir }}/vaultwarden/vw-data/:/data/"
+    env:
+      TZ: "{{ timezone }}"
+      DOMAIN: "https://vaultwarden.{{ domain_internal }}"
+      ADMIN_TOKEN: "{{ vaultwarden_admin_token }}"
+      SIGNUPS_ALLOWED: "false"
+      SMTP_HOST: smtp.zoho.com
+      SMTP_FROM: "{{ smtp_mail }}"
+      SMTP_PORT: "587"
+      SMTP_SECURITY: "starttls"
+      SMTP_USERNAME: "{{ smtp_mail }}"
+      SMTP_PASSWORD: "{{ smtp_pass_ghost }}"
