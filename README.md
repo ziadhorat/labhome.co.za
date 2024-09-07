@@ -26,7 +26,7 @@
 
 ### Diagram
 
-![Homelab Diagram](assets/diagram.png?raw=true "Title")
+![Diagram](https://github.com/user-attachments/assets/29b68327-0193-4da8-b1c3-1090ea1f2616)
 
 ## Services:
 
