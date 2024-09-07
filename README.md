@@ -22,7 +22,7 @@
 
 ### Monitoring
 
-![Monitoring](assets/monitoring.png?raw=true "Title")
+![Monitoring](https://github.com/user-attachments/assets/2cbbdb5a-9016-42ab-b1ff-4e4a3bb8e263)
 
 ### Diagram
 
