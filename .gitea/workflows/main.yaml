@@ -1,5 +1,5 @@
 name: Main
-run-name: ${{ gitea.actor }} - Labhome.co.za
+run-name: ${{ gitea.actor }} - Domain.tld
 on: [push]
 
 jobs:
