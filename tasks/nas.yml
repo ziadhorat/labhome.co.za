@@ -24,7 +24,6 @@
         - samba                                                       # [445]
         - jellyfin                                                    # [8096]
         - prowlarr                                                    # [9006]
-        - whisparr                                                    # [9005]
         - radarr                                                      # [9003]
         - sonarr                                                      # [9002]
         - overseerr                                                   # [9001]
