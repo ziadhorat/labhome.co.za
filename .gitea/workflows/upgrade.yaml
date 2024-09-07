@@ -1,0 +1,127 @@
+name: Main
+run-name: ${{ gitea.actor }} - Labhome.co.za
+on:
+  schedule:
+    - cron: '0 05 * * *'
+  # push:
+  #   branches:
+  #   - 'main'
+
+jobs:
+  upgrade:
+    # runs-on: primary
+    steps:
+      # - name: Pre-configure runner
+      #   run: |
+      #     apk add --no-cache nodejs
+
+          # apt update # From below
+      
+      - name: Pre-configure runner
+        run: |
+          apt-add-repository ppa:ansible/ansible
+          apt install ansible -y
+
+      - name: Initialize repo
+        uses: actions/checkout@v3
+
+      - name: Configure runner
+        run: |
+          echo -- KEYS --
+          rm -rf ~/.ssh/config
+          mkdir -p ~/.ssh/
+
+          echo "$SSH_KEY" > ~/.ssh/services.key
+          chmod 600 ~/.ssh/services.key
+          cat >>~/.ssh/config <<END
+          Host services
+            HostName $SSH_HOST_SERVICES
+            User $SSH_USER
+            IdentityFile ~/.ssh/services.key
+            StrictHostKeyChecking no
+          END
+
+          echo "$SSH_KEY" > ~/.ssh/dev.key
+          chmod 600 ~/.ssh/dev.key
+          cat >>~/.ssh/config <<END
+          Host dev
+            HostName $SSH_HOST_DEV
+            User $SSH_USER
+            IdentityFile ~/.ssh/dev.key
+            StrictHostKeyChecking no
+          END
+
+          echo "$SSH_KEY" > ~/.ssh/net.key
+          chmod 600 ~/.ssh/net.key
+          cat >>~/.ssh/config <<END
+          Host net
+            HostName $SSH_HOST_NET
+            User $SSH_USER
+            IdentityFile ~/.ssh/net.key
+            StrictHostKeyChecking no
+          END
+
+          echo "$SSH_KEY" > ~/.ssh/db.key
+          chmod 600 ~/.ssh/db.key
+          cat >>~/.ssh/config <<END
+          Host db
+            HostName $SSH_HOST_DB
+            User $SSH_USER
+            IdentityFile ~/.ssh/db.key
+            StrictHostKeyChecking no
+          END
+
+          echo "$SSH_KEY" > ~/.ssh/nas.key
+          chmod 600 ~/.ssh/nas.key
+          cat >>~/.ssh/config <<END
+          Host nas
+            HostName $SSH_HOST_NAS
+            User $SSH_USER
+            IdentityFile ~/.ssh/nas.key
+            StrictHostKeyChecking no
+          END
+
+          echo "$SSH_KEY" > ~/.ssh/proxmox.key
+          chmod 600 ~/.ssh/proxmox.key
+          cat >>~/.ssh/config <<END
+          Host proxmox
+            HostName $SSH_HOST_PROXMOX
+            User $SSH_USER
+            IdentityFile ~/.ssh/proxmox.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST_SERVICES: ${{ secrets.SERVICES_SSH_HOST }}
+          SSH_HOST_DEV: ${{ secrets.DEV_SSH_HOST }}
+          SSH_HOST_NET: ${{ secrets.NET_SSH_HOST }}
+          SSH_HOST_DB: ${{ secrets.DB_SSH_HOST }}
+          SSH_HOST_NAS: ${{ secrets.NAS_SSH_HOST }}
+          SSH_HOST_PROXMOX: ${{ secrets.NAS_SSH_PROXMOX }}
+
+      - name: Update and upgrade servers
+        run: ansible-playbook main.yml -i group_vars/inventory
+
+      - name: Send mail
+        if: always()
+        uses: https://github.com/dawidd6/action-send-mail@v3
+        with:
+            server_address: smtp.zoho.com
+            # Server port, default 25:
+            server_port: 465
+            # Optional whether this connection use TLS (default is true if server_port is 465)
+            secure: true
+            # Optional (recommended) mail server username:
+            username: ${{secrets.MAIL_USERNAME}}
+            # Optional (recommended) mail server password:
+            password: ${{secrets.MAIL_PASSWORD}}
+            to: user@domain.tld
+            from: Gitea Notifier <${{secrets.MAIL_USERNAME}}>
+            subject: Gitea - ${{ gitea.repository }} - ${{ job.status }} - ${{gitea.workflow}} 
+            priority: normal
+            convert_markdown: true
+            html_body: |
+                ### Job ${{ job.status }}
+
+                ${{ github.repository }}: [${{ github.ref }}@${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/actions)
