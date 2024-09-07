@@ -18,8 +18,7 @@
 
 ### Homepage
 
-![Homepage](assets/homepage.png?raw=true "Title")
-
+![Dashboard](https://github.com/user-attachments/assets/13f12574-8bd5-46aa-b916-a7ccd1ef5ed5)
 
 ### Monitoring
 
