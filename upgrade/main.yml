@@ -1,0 +1,35 @@
+---
+- name: Update and upgrade hosts
+  hosts: all
+  become: true
+  tasks:
+    - name: Remove unnecessary packages
+      apt:
+        name: "*"
+        state: absent
+        autoremove: yes
+        purge: yes
+
+    - name: Clean up the apt cache
+      apt:
+        update_cache: no
+        cache_valid_time: 21600
+        autoclean: yes
+
+    - name: Remove downloaded package files
+      command: apt-get clean
+
+    - name: Prune unused Docker images
+      command: docker image prune -a -f
+      ignore_errors: yes
+
+    - name: Prune unused Docker volumes
+      command: docker volume prune -f
+      ignore_errors: yes
+
+    - name: MAIN - Update and upgrade all hosts
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day
