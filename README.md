@@ -26,7 +26,7 @@
 
 ### Diagram
 
-![Diagram](https://github.com/user-attachments/assets/29b68327-0193-4da8-b1c3-1090ea1f2616)
+![Diagram](https://github.com/user-attachments/assets/5e397fe6-1fc8-479a-90da-7fa99a6c9fd4)
 
 ## Services:
 
