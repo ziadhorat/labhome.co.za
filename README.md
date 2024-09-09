@@ -31,6 +31,8 @@
 ## Services:
 
 - **Development**
+- - [UptimeKuma](https://github.com/louislam/uptime-kuma) - A fancy self-hosted monitoring tool.
+- - [Yaade](https://github.com/EsperoTech/yaade) -  Yaade is an open-source, self-hosted, collaborative API development environment.
 - - [Portainer](https://hub.docker.com/r/portainer/portainer-ce) - Management of Docker environment.
 - - [Prometheus](https://hub.docker.com/r/prom/prometheus) - Prometheus is a systems and service monitoring system. 
 - - [Loki](https://hub.docker.com/r/grafana/loki) - Cloud Native Log Aggregation by Grafana.
@@ -38,11 +40,17 @@
 - - [Grafana](https://hub.docker.com/r/grafana/grafana) - Grafana is the open source analytics & monitoring solution for every database.
 - - [Code-Server](https://docs.linuxserver.io/images/docker-code-server/) - Code-server is VS Code running on a remote server, accessible through the browser.  
 - - [Gitea](https://docs.gitea.com/installation/install-with-docker) - Forge software package for hosting software development version control using Git.
-- - [Gitea-Runner](https://docs.gitea.com/usage/actions/act-runner) - Runner of Gitea Actions.
 
 - **NAS**
+- - [Firefox](https://hub.docker.com/r/jlesage/firefox) - Docker container for Firefox.
+- - [Excalidraw](https://hub.docker.com/r/excalidraw/excalidraw/tags) - Virtual whiteboard for sketching hand-drawn like diagrams.
+- - [NFS](https://github.com/MekayelAnik/nfs-server-alpine) -  A Multi-Aarch Docker image for lightweight, highly customizable, containerized NFS server.
+- - [Filebrowser](https://github.com/filebrowser/filebrowser) - Web File Browser. 
+- - [Bazarr](https://docs.linuxserver.io/images/docker-bazarr/) - Manage and download subtitles based on your requirements.
+- - [Samba](https://hub.docker.com/r/adevur/easy-samba) - SAMBA server based on CentOS 8, easy to set up.
+- - [Tautulli](https://hub.docker.com/r/tautulli/tautulli) - A Python based monitoring and tracking tool for Plex Media Server.
+- - [Gitea-Runner](https://docs.gitea.com/usage/actions/act-runner) - Runner of Gitea Actions.
 - - [Crafty](https://hub.docker.com/r/arcadiatechnology/crafty-4) - Minecraft Server Wrapper/Controller/Launcher.
-- - [Plex](https://hub.docker.com/r/linuxserver/plex) - Hosts & organizes movies.
 - - [Jellyfin](https://hub.docker.com/r/jellyfin/jellyfin) - The Free Software Media Browser.
 - - [Scrutiny](https://github.com/AnalogJ/scrutiny#docker) - WebUI for smartd S.M.A.R.T monitoring.
 - - [Samba](https://hub.docker.com/r/adevur/easy-samba) - SAMBA server based on CentOS 8, easy to set up. 
@@ -54,16 +62,20 @@
 - - [Unpackerr](https://github.com/Unpackerr/unpackerr) - Extracts downloads for Radarr, Sonarr, Lidarr, Readarr, and/or a Watch folder.
 - - [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) - FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
 - - [qBitTorrent](https://hub.docker.com/r/linuxserver/transmission) -  Torrent client. [Common issue](https://github.com/qbittorrent/qBittorrent/issues/8095#issuecomment-472740702)
+- - [qFlood](https://hub.docker.com/r/hotio/qflood) - Torrent client Web UI.
 
 - **Services**
+- - [Plex-Spot](https://github.com/ziadhorat/Plex-Spot) - [Demo](https://plex-spot.labhome.co.za/)  Small Plex Dashboard.
+- - [Vaultwarden](https://github.com/dani-garcia/vaultwarden) -  Unofficial Bitwarden compatible server written in Rust.
+- - [2FAuth](https://hub.docker.com/r/2fauth/2fauth) - A web app to manage your Two-Factor Authentication (2FA) accounts and generate their security codes.
+- - [TheLounge](https://github.com/thelounge/thelounge) - Modern, responsive, cross-platform, self-hosted web IRC client.
+- - [Plex](https://hub.docker.com/r/linuxserver/plex) - Hosts & organizes movies.
 - - [Homepage](https://gethomepage.dev/) - A modern, fully static, fast, secure fully proxied, highly customizable application dashboard.
 - - [Home-Assistant](https://hub.docker.com/r/homeassistant/home-assistant) - Open source home automation that puts local control and privacy first.
-- - [qFlood](https://hub.docker.com/r/hotio/qflood) - Torrent client Web UI.
 - - [Joplin-Server](https://hub.docker.com/r/joplin/server) - Joplin is an excellent open source note taking application with plenty of features.
 - - [File-Gator](https://hub.docker.com/r/filegator/filegator) - FileGator is a free, open-source, self-hosted web application for managing files and folders.
 - - [IT-Tools](https://hub.docker.com/r/corentinth/it-tools) - Collection of handy tools for developers.
 - - [PairDrop](https://hub.docker.com/r/linuxserver/pairdrop) - Send documents via peer to peer connection over LAN.
-- - [Tautulli](https://hub.docker.com/r/tautulli/tautulli) - A Python based monitoring and tracking tool for Plex Media Server.
 - - [DrawIO](https://hub.docker.com/r/jgraph/drawio) - Diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams.
 - - [Ghost](https://hub.docker.com/_/ghost) - Ghost is a free and open source blogging platform written in JavaScript.
 - - [Wordpress](https://hub.docker.com/_/wordpress) - The WordPress rich content management system can utilize plugins, widgets, and themes.
@@ -74,10 +86,10 @@
 - - [Duplicati](https://docs.linuxserver.io/images/docker-duplicati/) - Duplicati was designed for online backups from scratch.
 
 - **Network**
-- - [PiHole](https://hub.docker.com/r/pihole/pihole) - DNS sinkhole.
-- - [PiAlert](https://github.com/pucherot/Pi.Alert) - WIFI / LAN intruder detector.
+- - [Wireguard](https://github.com/wg-easy/wg-easy) -  The easiest way to run WireGuard VPN + Web-based Admin UI.
+- - [Adguard](https://hub.docker.com/r/adguard/adguardhome) - Network-wide ads & trackers blocking DNS server.
+- - [Cloudflare_DDNS](https://github.com/favonia/cloudflare-ddns) - A small, feature-rich, and robust Cloudflare DDNS updater.
 - - [Nginx](https://hub.docker.com/r/jc21/nginx-proxy-manager) - Manage Nginx proxy hosts with a simple, powerful interface. [Config](https://pimylifeup.com/raspberry-pi-nginx-proxy-manager/)
-- - [Tailscale](https://hub.docker.com/r/tailscale/tailscale) - Connect your devices and users together in your own secure virtual private network. 
 - - [CloudFlared](https://github.com/cloudflare/cloudflared) - Tunneling daemon that proxies traffic from the Cloudflare network to your origins.
 
 - **Databases**
@@ -86,17 +98,16 @@
 
 - **Agents on all servers**
 - - [WatchTower](https://hub.docker.com/r/containrrr/watchtower) - Automating Docker container base image updates.
-- - [Promtail](https://hub.docker.com/r/grafana/promtail) - Agent which ships the contents of local logs to a private Loki instance.
 - - [cAdvisor](https://hub.docker.com/r/google/cadvisor) - Provides an understanding of the resource usage and performance characteristics of containers.
 - - [Portainer-Agent](https://hub.docker.com/r/portainer/agent) - An agent used to manage all the resources in a Swarm cluster. 
 
 ## Usage
 
 - Set up vars file for general & nas.
-- Ensure all ports are correctly assigned withink boilerplates.
-- !! Change the user and group in all boilerplates from root, root will guarentee it will all work but you should instead use the user generated by the ansible scripts or one on your system already (without root privs).
-- Run: `ansible-playbook main.yml`
-- After the initial run, gitea + gitea_runners do all future deploys
+- Ensure all ports are correctly assigned within boilerplates to your needs.
+- !! Change the user and group in all boilerplates from root:root, root will guarentee it will all work but you should instead use the user generated by the ansible scripts or one on your system already (without root privs).
+- Run: `ansible-playbook main.yml`.
+- After the initial run, setup gitea + gitea_runners to do all future deploys.
 
 ## Issues
 
